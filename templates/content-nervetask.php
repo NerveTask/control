@@ -15,7 +15,7 @@
 			<p>' . __('Pages:', 'roots'), 'after' => '</p>
 		</nav>')); ?>
 	</footer>
-	<?php comments_template( '/templates/comments.php'); ?>
+	<?php comments_template( '/templates/comments-nervetask.php'); ?>
 </article>
 <aside class="nervetask-sidebar col-sm-3">
 	<?php get_template_part( 'templates/entry-meta'); ?>
