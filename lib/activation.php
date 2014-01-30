@@ -64,7 +64,7 @@ function roots_theme_activation_options_render_page() { ?>
                 <option selected="selected" value="true"><?php echo _e('Yes', 'roots'); ?></option>
                 <option value="false"><?php echo _e('No', 'roots'); ?></option>
               </select>
-              <p class="description"><?php printf(__('Create a page called Home and set it to be the static front page', 'roots')); ?></p>
+              <p class="description"><?php printf(__('Create a page called Dashboard and set it to be the static front page', 'roots')); ?></p>
             </fieldset>
           </td>
         </tr>
@@ -123,7 +123,7 @@ function roots_theme_activation_action() {
   if ($roots_theme_activation_options['create_front_page'] === 'true') {
     $roots_theme_activation_options['create_front_page'] = false;
 
-    $default_pages = array('Home');
+    $default_pages = array('Dashboard');
     $existing_pages = get_pages();
     $temp = array();
 
@@ -144,15 +144,17 @@ function roots_theme_activation_action() {
       $result = wp_insert_post($add_default_pages);
     }
 
-    $home = get_page_by_title('Home');
+    $dashboard = get_page_by_title('Dashboard');
     update_option('show_on_front', 'page');
-    update_option('page_on_front', $home->ID);
+    update_option('page_on_front', $dashboard->ID);
+	update_post_meta( $dashboard->ID, '_wp_page_template', 'template-dashboard.php' );
 
-    $home_menu_order = array(
-      'ID' => $home->ID,
+
+    $dashboard_menu_order = array(
+      'ID' => $dashboard->ID,
       'menu_order' => -1
     );
-    wp_update_post($home_menu_order);
+    wp_update_post($dashboard_menu_order);
   }
 
   if ($roots_theme_activation_options['change_permalink_structure'] === 'true') {
