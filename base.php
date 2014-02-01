@@ -33,6 +33,7 @@
 
 		</div><!-- /.content -->
 
+		<?php get_template_part('templates'); ?>
 		<?php get_template_part('templates/footer'); ?>
 
 	</div><!-- /.wrap -->

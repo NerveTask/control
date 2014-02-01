@@ -15,7 +15,7 @@ jQuery(document).ready(function ($) {
 
 		type: 'POST',
 
-		url: ajaxurl.ajaxurl,
+		url: control.ajaxurl,
 
 		data: {
 			action: 'get_current_user'
@@ -40,7 +40,7 @@ jQuery(document).ready(function ($) {
 
 		type: 'POST',
 
-		url: ajaxurl.ajaxurl,
+		url: control.ajaxurl,
 
 		data: {
 			action: 'get_assigned_users',
