@@ -151,8 +151,11 @@
 			},
 
 			render: function () {
+
 				if (this.type === 'post') {
 					template = $('#single-post-view').html();
+				} else if (this.type === 'task') {
+					template = $('#single-task-view').html();
 				} else {
 					template = $('#single-page-view').html();
 				}
@@ -163,6 +166,11 @@
 
 				$(this.el).html(template);
 				PubSub.trigger('post:single:' + this.type, this.model);
+
+				var body_class = '';
+				body_class = 'singular single-' + this.type + ' logged-in-' +control.loggedin;
+				$('body').attr( 'class', body_class );
+
 				scrollToTop();
 			}
 

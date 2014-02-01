@@ -11,7 +11,7 @@
  * 3. /theme/assets/js/main.min.js (in footer)
  */
 function control_scripts() {
-	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '2692a0275396ffb258635f5bb48cc334');
+	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, 'd275d3e39c4b52ba24646169f2149120');
 
 	// jQuery is loaded using the same method from HTML5 Boilerplate:
 	// Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
@@ -27,7 +27,7 @@ function control_scripts() {
 	}
 
 	wp_register_script('modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-2.7.0.min.js', array(), null, false);
-	wp_register_script('control_scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', array(), 'e8d77dbf49668910292f308827704f14', true);
+	wp_register_script('control_scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', array(), '1fc4ebaeeadbbd238f29fddbb7311369', true);
 
 	// all scripts
 	wp_enqueue_script('wp-api');

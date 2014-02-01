@@ -55,6 +55,40 @@
     </div>
 </script>
 
+<script type="text/tmpl" id="single-task-view">
+    <div class="post-list">
+        <article <?php post_class( 'col-sm-9'); ?>>
+
+			<header>
+				<a href="<?php the_permalink(); ?>" class="post-id"><?php the_ID(); ?></a>
+				<h1 class="entry-title">
+					{{ post.get("title") }}
+				</h1>
+			</header>
+
+            <div class="entry-content">{{ post.get('content') }}</div>
+
+            <div id="comments">Loading...</div>
+        </article>
+
+		<aside class="nervetask-sidebar col-sm-3">
+			Written by {{ post.get('author').get('name') }}
+			on {{ post.get('date') }}
+		</aside>
+    </div>
+
+</script>
+
+<script type="text/tmpl" id="single-page-view">
+    <div class="post-list">
+        <article class="post">
+            <h2>{{ post.get("title") }}</h2>
+
+            <div class="entry-content">{{ post.get('content') }}</div>
+        </article>
+    </div>
+</script>
+
 <script type="text/tmpl" id="single-post-view">
     <div class="post-list">
         <article class="post">
@@ -68,16 +102,6 @@
             <div class="entry-content">{{ post.get('content') }}</div>
 
             <div id="comments">Loading...</div>
-        </article>
-    </div>
-</script>
-
-<script type="text/tmpl" id="single-page-view">
-    <div class="post-list">
-        <article class="post">
-            <h2>{{ post.get("title") }}</h2>
-
-            <div class="entry-content">{{ post.get('content') }}</div>
         </article>
     </div>
 </script>
