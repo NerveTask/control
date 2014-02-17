@@ -41,8 +41,7 @@
 
 <?php if (comments_open()) : ?>
   <section id="respond">
-    <h3><?php comment_form_title(__('Leave a Reply', 'roots'), __('Leave a Reply to %s', 'roots')); ?></h3>
-    <p class="cancel-comment-reply"><?php cancel_comment_reply_link(); ?></p>
+    <div class="cancel-comment-reply"><?php cancel_comment_reply_link(); ?></div>
     <?php if (get_option('comment_registration') && !is_user_logged_in()) : ?>
       <p><?php printf(__('You must be <a href="%s">logged in</a> to post a comment.', 'roots'), wp_login_url(get_permalink())); ?></p>
     <?php else : ?>

@@ -22,16 +22,16 @@ if ( $the_query->have_posts() ) { ?>
 						<a class="btn-block active" style="text-decoration: underline;" href="<?php echo add_query_arg( array( 'post_type' => 'nervetask', 'orderby' => 'title', 'order' => 'DESC' ) ); ?>">Title</a>
 					<?php endif; ?>
 				</th>
+
 				<th class="column-status">Status</th>
 				<th class="column-priority">Priority</th>
 				<th class="column-assigned">Assigned</th>
-				<th class="column-due-date">Due Date</th>
 			</tr>
 		</thead>
 
 		<tbody>
 
-	<?php while ( $the_query->have_posts() ) { $the_query->the_post(); ?>
+		<?php while ( $the_query->have_posts() ) { $the_query->the_post(); ?>
 
 			<tr id="post-<?php the_ID(); ?>" class="">
 
@@ -43,13 +43,9 @@ if ( $the_query->have_posts() ) { ?>
 
 				<td class="column-assigned"></td>
 
-				<td class="column-due-date">
-
-				</td>
-
 			</tr>
 
-	<?php } ?>
+		<?php } ?>
 
 		</tbody>
 
