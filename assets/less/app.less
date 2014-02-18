@@ -1,18 +1,4 @@
-/*!
- * Roots 6.5.1
- */
-
 @import "bootstrap/bootstrap.less";
-
-/*
- * Pastel
- *
-@color1: #FF6138;
-@color2: #FFFF9D;
-@color3: #BEEB9F;
-@color4: #79BD8F;
-@color5: #00A388;
-*/
 
 @color1: #0074a2; // links / primary
 @color2: #FFFF9D;
@@ -50,13 +36,70 @@ a {
 
 .banner { }
 
+.site-title {
+	font-size: 14px;
+	margin: 0 0 8px;
+}
+
+#create-new-task-container {
+	background: #365172;
+	color: #fff;
+	margin-left: 220px;
+	overflow: hidden;
+	padding: 6px 0;
+
+	form {
+		margin: 0 0 5px;
+
+		.form-group {
+			margin: 0;
+			padding: 0;
+		}
+
+		button[type="submit"] {
+			display: none;
+		}
+
+		.control-label {
+			display: none;
+		}
+
+		.control-input {
+			margin: 0;
+			padding: 0;
+			width: 99%;
+
+			input[type="text"] {
+				background: rgba(0,0,0,.2);
+				border: none;
+				box-shadow: 1px 1px 3px rgba(0,0,0,.2) inset;
+				color: #fff;
+			}
+		}
+	}
+
+	.new-task-list {
+
+		a {
+			color: #fff;
+			background: rgba(255,255,255,.2);
+			padding: 3px 8px;
+			box-shadow: 0 0 8px rgba(255,255,255,.2) inset;
+		}
+	}
+
+	.toggole-new-task-container {
+		display: block;
+	}
+}
+
 
 
 /* ==========================================================================
    Content
    ========================================================================== */
 
-.content {
+.site-content {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -66,14 +109,12 @@ a {
 	width: 100%;
 	z-index: 10;
 
-	.main {
+	.content-area {
+		height: 100%;
 		margin-left: 220px;
-		margin-top: 20px;
-		padding: 0 20px;
 	}
 
 }
-
 
 
 /* ==========================================================================
@@ -93,14 +134,14 @@ a {
    Sidebar
    ========================================================================== */
 
-.sidebar {
+#secondary {
 	top: 0;
 	left: 0;
 	font-weight: 300;
 	background: @color5;
 	color: #8091A5;
 	bottom: 0;
-	padding: 10px 0;
+	padding: 20px 0;
 	position: fixed;
 	width: 220px;
 	z-index: 99;
@@ -115,14 +156,14 @@ a {
 			opacity: 0.5;
 		}
 		&:hover {
-			background: #454E59;
+			background: darken( #4F76A5, 5% );;
 		}
 	}
 
 	.current_page_item {
 
 		a {
-			background: @color1;
+			background: #4F76A5;
 			color: white;
 		}
 	}
@@ -149,15 +190,17 @@ a {
 
 	.widget {
 
-		> h3 {
+		.widget-title {
 			color: white;
 			font-size: 14px;
 			font-weight: 400;
-			padding: 4px 8px;
+			margin: 0;
+			padding: 0 10px;
 		}
 
 		> ul {
 			list-style: none;
+			margin: 0;
 			padding: 0;
 		}
 	}
@@ -176,17 +219,14 @@ a {
 
 .single-nervetask {
 
-	.hentry {
+	.site-main {
 		background: #454E59;
-		border: 1px solid #f1f1f1;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
 		overflow: hidden;
 
-		article {
+		.nervetask {
 			background: #fff;
 			padding: 0;
+			overflow: hidden;
 
 			header {
 				background: #5EB95E;
@@ -226,28 +266,32 @@ a {
 				line-height: 20px;
 				padding: 40px;
 			}
+
 		}
-
-	}
-	.nervetask-sidebar {
-		color: #8091A5;
-
-		a {
-			color: #BCD4F2;
-		}
-
-		.task-meta {
-			margin: 0;
+		.entry-meta {
+			color: #8091A5;
 			padding: 0;
 
-			> li {
-				padding: 20px;
+			a {
+				color: #BCD4F2;
 			}
 
-			li {
-				strong {
-					font-size: 20px;
-					font-weight: 400;
+			.task-meta {
+				margin: 0;
+				padding: 0;
+
+				> li {
+					padding: 20px;
+				}
+
+				li {
+					border-bottom: 1px dotted #8091A5;
+
+					strong {
+						color: #fff;
+						font-size: 18px;
+						font-weight: 700;
+					}
 				}
 			}
 		}
@@ -257,9 +301,14 @@ a {
 /* ==========================================================================
    Comments
    ========================================================================== */
+.comments-title,
+.comment-reply-title{
+	display: none;
+}
 
 .comment-list {
 	margin: 0;
+	padding: 0;
 }
 .comment,
 .status {
@@ -267,7 +316,7 @@ a {
 	border-bottom: 1px dotted #ccc;
 	list-style: none;
 	margin: 0;
-	padding: 10px;
+	padding: 10px 10px 0;
 
 	.comment-meta {
 		color: #999;
@@ -276,6 +325,15 @@ a {
 		margin: 0;
 		overflow: hidden;
 		text-align: right;
+	}
+
+	.comment-text {
+		overflow: hidden;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
 	}
 
 }
@@ -292,15 +350,20 @@ a {
 		-webkit-border-radius: 12px;
 		-moz-border-radius: 12px;
 		float: left;
-		height: 24px;
+		height: 20px;
 		margin: 0 5px 0 0;
-		width: 24px;
+		width: 20px;
 	}
 	.comment {
 		border-bottom: none;
 		border-left: 1px dotted #ccc;
 		border-top: 1px dotted #ccc;
 		padding-right: 0;
+	}
+
+	.comment-text {
+		clear: both;
+		padding: 12px 0 0;
 	}
 
 }
@@ -310,20 +373,31 @@ a {
 	color: #999;
 	overflow: hidden;
 
-	.comment-text {
+	.comment-body {
 		color: #999;
+		display: inline;
 		font-size: 11px;
 	}
-	.comment-text p {
-		display: inline;
-	}
+
 	a {
 		color: #666;
 	}
 }
 
-#commentform {
+.comment-respond {
 	padding: 8px 8px 0;
+
+	.comment-form-comment {
+
+		label {
+			display: block;
+		}
+
+		textarea {
+			border: 1px solid #eee;
+			width: 99%;
+		}
+	}
 }
 
 .cancel-comment-reply {
@@ -340,18 +414,23 @@ a {
    Footer
    ========================================================================== */
 
-.content-info {
+.site-footer {
 	position: fixed;
 	bottom: 0;
 	background: @color5;
+	font-size: 10px;
 	padding: 3px;
 	width: 100%;
 	z-index: 10;
-	color: white;
-	margin-left: 220px;
+	color: #8091A5;
+	text-align: right;
 
 	p {
 		margin: 0;
+	}
+
+	a {
+		color: #8091A5;
 	}
 }
 

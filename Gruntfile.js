@@ -26,7 +26,7 @@ module.exports = function(grunt) {
           // To enable, set sourceMap to true and update sourceMapRootpath based on your install
           sourceMap: true,
           sourceMapFilename: 'assets/css/main.min.css.map',
-          sourceMapRootpath: '/wp-content/themes/control/'
+          sourceMapRootpath: '/wp-content/themes/control-2/'
         }
       }
     },
@@ -53,13 +53,13 @@ module.exports = function(grunt) {
         options: {
           // JS source map: to enable, uncomment the lines below and update sourceMappingURL based on your install
           sourceMap: 'assets/js/scripts.min.js.map',
-          sourceMappingURL: '/wp-content/themes/control/assets/js/scripts.min.js.map'
+          sourceMappingURL: '/wp-content/themes/control-2/assets/js/scripts.min.js.map'
         }
       }
     },
     version: {
       options: {
-        file: 'lib/scripts.php',
+        file: 'functions.php',
         css: 'assets/css/main.min.css',
         cssHandle: 'control_main',
         js: 'assets/js/scripts.min.js',
