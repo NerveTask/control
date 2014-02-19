@@ -1,6 +1,6 @@
 # control: A WordPress Theme for use with the NerveTask plugin
 
-control is a WordPress theme meant to be used with the NerveTask project management plugin. The project management functionality is strictly limited to the plugin while this theme is strictly limited to theming and usability around function the plugin exposes.
+control is a WordPress theme meant to be used with the **[NerveTask](nervetask)** project management plugin. The project management functionality is strictly limited to the plugin while this theme is strictly limited to theming and usability around function the plugin exposes.
 
 ## Contributing
 
