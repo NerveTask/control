@@ -4,10 +4,10 @@ control is a WordPress theme meant to be used with the **[NerveTask](nervetask)*
 
 ## Contributing
 
-Get involved in the **planning, discussion, and road-mapping** by participating in the **[control theme Trello Board](trello)**.
+Get involved in the **planning, discussion, and road-mapping** by participating in the **[control Theme Trello Board]**.
 
 Or fork the repository and submit pull requests!
 
 [control]: https://github.com/NerveTask/control
 [nervetask]: https://github.com/NerveTask/nervetask
-[trello]: https://trello.com/b/BsOdiacO/control
+[control Theme Trello Board]: https://trello.com/b/BsOdiacO/control
