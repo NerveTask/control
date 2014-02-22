@@ -151,12 +151,22 @@ function control_get_tasks() {
 
 				$post_id = get_the_ID();
 
+				$users = get_users( array(
+					'connected_type' => 'nervetask_to_user',
+					'connected_items' => $post_id
+				));
+				
+				$assigned = '';
+				foreach( $users as $user ) {
+					$assigned .= '<a href="'. get_author_posts_url( $user->data->ID ) .'">'. $user->data->display_name .'</a>';
+				}
+
 				$rows[] = array(
 					'<a href="'. get_permalink() .'">'. get_the_title() .'</a>',
 					get_the_term_list( $post_id, 'nervetask_status', '<span class="task-status">', ', ', '</span>' ),
 					get_the_term_list( $post_id, 'nervetask_priority', '<span class="task-priority">', ', ', '</span>' ),
-					'assigned',
-					'due date',
+					$assigned,
+					get_post_meta( $post_id, 'nervetask_due_date', true),
 					'<time datetime="'. get_the_time('c') .'">'. get_the_time('M j, Y') .' at '. get_the_time('g:ia') .'</time>'
 				);
 
