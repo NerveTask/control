@@ -1,4 +1,5 @@
 @import "bootstrap/bootstrap.less";
+@import "../datatables/css/jquery.dataTables.css";
 
 @color1: #0074a2; // links / primary
 @color2: #FFFF9D;
@@ -6,6 +7,13 @@
 @color4: #79BD8F;
 @color5: #365172; // sidebar
 
+
+.dataTables_paginate {
+
+	a[role="button"] {
+		.btn-default();
+	}
+}
 /* ==========================================================================
    Base
    ========================================================================== */
@@ -42,9 +50,6 @@ a {
 }
 
 #create-new-task-container {
-	background: #365172;
-	color: #fff;
-	margin-left: 220px;
 	overflow: hidden;
 	padding: 6px 0;
 
@@ -120,6 +125,10 @@ a {
 /* ==========================================================================
    Primary Content
    ========================================================================== */
+
+.site-main {
+	padding: 20px;
+}
 
 .main {
 	height: 100%;

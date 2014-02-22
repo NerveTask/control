@@ -80,7 +80,7 @@ add_action( 'widgets_init', 'control_widgets_init' );
  */
 function control_scripts() {
 
-	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, 'b5c249b59643c507bbee519fe6b5f238');
+	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '55f0a3798f9d897e05093c26b0df271f');
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -95,8 +95,87 @@ function control_scripts() {
 	wp_enqueue_script('control_scripts');
 	wp_localize_script('control_scripts', 'ajaxurl', array('ajaxurl' => admin_url('admin-ajax.php')));
 
+	wp_register_script('datatables',		get_template_directory_uri() .'/assets/datatables/js/jquery.dataTables.min.js' );
+	wp_register_script('rotarydatatables',	get_template_directory_uri() .'/js/rotary.datatables.js',  array( 'jquery' ), null, true );
+	wp_enqueue_style('rotary-datatables');
+	wp_enqueue_script(array('datatables','datatablesreload', 'rotarydatatables', 'jquery-ui-dialog'));
+	wp_localize_script( 'rotarydatatables', 'rotarydatatables', array(
+		'ajaxURL' => admin_url('admin-ajax.php'),
+		'tableNonce' => wp_create_nonce( 'rotary-table-nonce' )
+	));
+
 }
 add_action( 'wp_enqueue_scripts', 'control_scripts' );
+
+add_action( 'wp_ajax_nopriv_get_tasks', 'control_get_tasks' );
+add_action( 'wp_ajax_get_tasks', 'control_get_tasks' );
+
+function control_get_tasks() {
+
+	if ( !empty( $_POST ) || ( defined('DOING_AJAX') && DOING_AJAX ) ) {
+
+		$count_tasks = wp_count_posts( 'nervetask' );
+
+		// Order
+		if( isset( $_GET['sSortDir_0'] ) ) {
+			if( $_GET['sSortDir_0'] == 'desc' ) {
+				$order = 'DESC';
+			} else {
+				$order = 'ASC';
+			}
+		}
+
+		// Orderby
+		if( isset( $_GET['iSortCol_0'] ) ) {
+			if( $_GET['iSortCol_0'] == 0 ) {
+				$orderby = 'title';
+			} else {
+				$orderby = 'date';
+			}
+		}
+
+		$args = array(
+			'offset'			=> $_GET['iDisplayStart'],
+			'order'				=> $order,
+			'orderby'			=> $orderby,
+			'post_type'			=> 'nervetask',
+			'posts_per_page'	=> $_GET['iDisplayLength'],
+			's'					=> $_GET['sSearch']
+		);
+		$query = new WP_Query( $args );
+
+		if ( $query->have_posts() ) {
+
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$post_id = get_the_ID();
+
+				$rows[] = array(
+					'<a href="'. get_permalink() .'">'. get_the_title() .'</a>',
+					get_the_term_list( $post_id, 'nervetask_status', '<span class="task-status">', ', ', '</span>' ),
+					get_the_term_list( $post_id, 'nervetask_priority', '<span class="task-priority">', ', ', '</span>' ),
+					'assigned',
+					'due date',
+					'<time datetime="'. get_the_time('c') .'">'. get_the_time('M j, Y') .' at '. get_the_time('g:ia') .'</time>'
+				);
+
+			}
+		}
+
+		$output = array(
+			'get'					=> $_GET,
+			'sEcho'					=> $_GET['sEcho'],
+			'iTotalRecords'			=> $count_tasks->publish,
+			'iTotalDisplayRecords'	=> $count_tasks->publish,
+			'aaData'				=> $rows
+		);
+
+		die(json_encode( $output ));
+
+	}
+}
+
 
 function control_task_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;

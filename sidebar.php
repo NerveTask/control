@@ -34,4 +34,11 @@
 			</aside>
 
 		<?php endif; // end sidebar widget area ?>
+
+		<div id="create-new-task-container">
+
+			<ul class="new-task-list nav nav-pills nav-stacked"></ul>
+
+		</div>
+
 	</div><!-- #secondary -->

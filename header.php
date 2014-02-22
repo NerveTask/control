@@ -22,11 +22,3 @@
 <div id="page" class="hfeed site">
 
 	<div id="content" class="site-content">
-
-		<div id="create-new-task-container">
-
-			<?php echo do_shortcode( '[nervetask_new_task content="false"]' ); ?>
-
-			<ul class="new-task-list nav nav-pills nav-stacked"></ul>
-
-		</div>
