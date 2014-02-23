@@ -23,6 +23,7 @@ get_header(); ?>
 
 			<?php endwhile; // end of the loop. ?>
 
+			<?php if( is_user_logged_in() ) { ?>
 			<table class="table table-striped table-bordered table-tasks">
 				<thead>
 					<tr>
@@ -48,6 +49,15 @@ get_header(); ?>
 					</tr>
 				</tfoot>
 			</table>
+			<?php } else { ?>
+
+			<div class="alert alert-warning">
+
+				You must be logged in to new dashboard tasks.
+
+			</div>
+
+			<?php } ?>
 			
 		</main><!-- #main -->
 	</div><!-- #primary -->

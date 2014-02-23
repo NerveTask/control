@@ -40,14 +40,7 @@
 					'bServerSide': true,
 					'sAjaxSource': control.ajaxURL + '?action=get_dashboard_tasks',
 					'iColumns': 5,
-					'aaSorting': [[5, "asc"]],
-					'fnServerData': function ( sSource, aoData, fnCallback ) {
-						$.getJSON( sSource, aoData, function (response) {
-							if( response.success === false ) {
-								$('.table-tasks').parent('.dataTables_wrapper').html('<div class="alert alert-warning">' + response.message + '</div>');
-							}
-						});
-					}
+					'aaSorting': [[5, "asc"]]
 				});
 			}
 		},
