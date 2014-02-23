@@ -31,8 +31,8 @@
 
 			}
 		},
-		// Home page
-		home: {
+		// My Tasks template
+		page_template_templatesmy_tasks_php: {
 			init: function () {
 				// JavaScript to be fired on the home page
 				$('.table-tasks').dataTable({

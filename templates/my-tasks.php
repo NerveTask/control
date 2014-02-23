@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Dashboard
+ * Template Name: My Tasks
  *
  * @package control
  */

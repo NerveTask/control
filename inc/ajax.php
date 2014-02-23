@@ -60,7 +60,7 @@ function control_get_tasks() {
 					get_the_term_list( $post_id, 'nervetask_priority', '<span class="task-priority">', ', ', '</span>' ),
 					$assigned,
 					get_post_meta( $post_id, 'nervetask_due_date', true),
-					'<time datetime="'. get_the_time('c') .'">'. get_the_time('M j, Y') .' at '. get_the_time('g:ia') .'</time>'
+					'<time datetime="'. get_the_time('c') .'">'. get_the_time('n/j/y') .' @ '. get_the_time('g:ia') .'</time>'
 				);
 
 			}
@@ -161,7 +161,7 @@ function control_get_dashboard_tasks() {
 					get_the_term_list( $post_id, 'nervetask_priority', '<span class="task-priority">', ', ', '</span>' ),
 					$assigned,
 					get_post_meta( $post_id, 'nervetask_due_date', true),
-					'<time datetime="'. get_the_time('c') .'">'. get_the_time('M j, Y') .' at '. get_the_time('g:ia') .'</time>'
+					'<time datetime="'. get_the_time('c') .'">'. get_the_time('n/j/y') .' @ '. get_the_time('g:ia') .'</time>'
 				);
 
 			}
