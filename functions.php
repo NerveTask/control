@@ -153,6 +153,36 @@ function control_task_comment( $comment, $args, $depth ) {
 	<?php
 }
 
+// TODO: Run this function on theme activate only
+function control_custom_menus() {
+
+	// Check if the menu exists
+	$menu_exists = wp_get_nav_menu_object( 'secondary' );
+
+	// If it doesn't exist, let's create it.
+	if( !$menu_exists){
+		$menu_id = wp_create_nav_menu( 'secondary' );
+		
+		$user = wp_get_current_user();
+
+		// Set up default menu items
+		$menu_author_id = wp_update_nav_menu_item($menu_id, 0, array(
+			'menu-item-title' =>  __( $user->display_name ),
+			'menu-item-url' => get_author_posts_url( $user->ID ), 
+			'menu-item-status' => 'publish'));
+		
+		// Set up default menu items
+		$menu_logout_id = wp_update_nav_menu_item($menu_id, 0, array(
+			'menu-item-title' =>  __( 'Logout' ),
+			'menu-item-parent-id' => $menu_author_id,
+			'menu-item-url' => wp_logout_url(), 
+			'menu-item-status' => 'publish'));
+
+	}
+}
+add_action( 'init', 'control_custom_menus' );
+
+
 /**
  * Implement the Custom Header feature.
  */
