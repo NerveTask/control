@@ -86,6 +86,17 @@ function control_get_dashboard_tasks() {
 
 	if ( !empty( $_POST ) || ( defined('DOING_AJAX') && DOING_AJAX ) ) {
 		
+		if( !is_user_logged_in() ) {
+			die(
+				json_encode(
+					array(
+						'success' => false,
+						'message' => __( 'You must be logged in to view this information.' )
+					)
+				)
+			);
+		}
+		
 		$user = wp_get_current_user();
 		
 		$count_tasks = get_posts( array(

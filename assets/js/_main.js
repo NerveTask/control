@@ -23,7 +23,6 @@
 		common: {
 			init: function () {
 				// JavaScript to be fired on all pages
-
 				$(document).on('nervetask-new-task', nervetaskNewTaskHandler);
 				$(document).on('nervetask-update-assignees', nervetaskUpdateAssigneesHandler);
 				$(document).on('nervetask-update-status', nervetaskUpdateStatusHandler);
@@ -41,7 +40,14 @@
 					'bServerSide': true,
 					'sAjaxSource': control.ajaxURL + '?action=get_dashboard_tasks',
 					'iColumns': 5,
-					"aaSorting": [[5, "asc"]],
+					'aaSorting': [[5, "asc"]],
+					'fnServerData': function ( sSource, aoData, fnCallback ) {
+						$.getJSON( sSource, aoData, function (response) {
+							if( response.success === false ) {
+								$('.table-tasks').parent('.dataTables_wrapper').html('<div class="alert alert-warning">' + response.message + '</div>');
+							}
+						});
+					}
 				});
 			}
 		},
@@ -55,7 +61,7 @@
 					'sAjaxSource': control.ajaxURL + '?action=get_tasks',
 					'iColumns': 5,
 					"aaSorting": [[5, "asc"]],
-					"sDom": "<'row'<'col-xs-6'T><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+					"sDom": "<'row'<'col-xs-6'T><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>"
 				});
 			}
 		}
