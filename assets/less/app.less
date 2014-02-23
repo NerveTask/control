@@ -4,7 +4,7 @@
 
 @color1: #d8225e; // links / primary
 @color2: #339ce1;
-@color3: #292929;
+@color3: #fff;
 @color4: rgba(31,31,31,0.95);
 @color5: #365172; // sidebar
 
@@ -38,10 +38,10 @@ html {
 }
 body {
 	background: @color3;
-	color: rgba(255,255,255,0.7);
+	color: #222;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: 300;
-	font-size: 13px;
+	font-size: 12px;
 	-webkit-font-smoothing: subpixel-antialiased;
 	font-smoothing: subpixel-antialiased;
 	min-height: 100%;
@@ -102,9 +102,12 @@ a {
 
 		a {
 			color: #fff;
-			background: rgba(255,255,255,.2);
+			border: 1px solid rgba(255,255,255,.2);
+			.border-top-radius(0);
+			.border-right-radius(0);
+			.border-bottom-radius(0);
+			.border-left-radius(0);
 			padding: 3px 8px;
-			box-shadow: 0 0 8px rgba(255,255,255,.2) inset;
 		}
 	}
 
@@ -136,6 +139,13 @@ a {
 
 }
 
+table.dataTable tr.odd td.sorting_1 { background-color: darken( @color3, 6% ); }
+table.dataTable tr.odd td.sorting_2 { background-color: darken( @color3, 5% ); }
+table.dataTable tr.odd td.sorting_3 { background-color: darken( @color3, 4% ); }
+table.dataTable tr.even td.sorting_1 { background-color: darken( @color3, 3% ); }
+table.dataTable tr.even td.sorting_2 { background-color: darken( @color3, 2% ); }
+table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F; }
+
 
 /* ==========================================================================
    Primary Content
@@ -155,8 +165,8 @@ a {
 	
 	.page-title {
 		margin: 0;
-	}
 }
+	}
 
 /* Gallery Shortcode */
 .gallery-row { padding: 15px 0; }
@@ -235,6 +245,42 @@ a {
 			list-style: none;
 			margin: 0;
 			padding: 0;
+		}
+	}
+
+	form.nervetask-new-task {
+		padding: 0 8px;
+
+		label {
+			display: none;
+		}
+
+		.control-input {
+			width: 99%;
+
+			.form-control {
+				background: rgba(255,255,255,.05);
+				border-color: rgba(255,255,255,.1);
+				.border-top-radius(0);
+				.border-right-radius(0);
+				.border-bottom-radius(0);
+				.border-left-radius(0);
+				font-size: 12px;
+				padding: 4px 6px;
+
+				&:active,
+				&:focus {
+					background: rgba(255,255,255,.85);
+					border-color: rgba(255,255,255,.95);
+				}
+			}
+		}
+
+		.btn[type="submit"] {
+			.btn();
+			.btn-xs();
+			.btn-primary();
+			float: right;
 		}
 	}
 }

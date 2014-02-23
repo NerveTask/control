@@ -19,7 +19,7 @@ get_header(); ?>
 
 			</header><!-- .page-header -->
 
-			<table class="table table-tasks">
+			<table class="table table-striped table-bordered table-tasks">
 				<thead>
 					<tr>
 						<th width="25%">Title</th>
