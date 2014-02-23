@@ -79,10 +79,10 @@ function control_get_tasks() {
 	}
 }
 
-add_action( 'wp_ajax_nopriv_get_dashboard_tasks', 'control_get_dashboard_tasks' );
-add_action( 'wp_ajax_get_dashboard_tasks', 'control_get_dashboard_tasks' );
+add_action( 'wp_ajax_nopriv_get_user_tasks', 'control_get_user_tasks' );
+add_action( 'wp_ajax_get_user_tasks', 'control_get_user_tasks' );
 
-function control_get_dashboard_tasks() {
+function control_get_user_tasks() {
 
 	if ( !empty( $_POST ) || ( defined('DOING_AJAX') && DOING_AJAX ) ) {
 		
@@ -96,9 +96,21 @@ function control_get_dashboard_tasks() {
 				)
 			);
 		}
-		
-		$user = wp_get_current_user();
-		
+
+		// Order
+		if( isset( $_GET['user'] ) ) {
+			$user = $_GET['user'];
+		} else {
+			die(
+				json_encode(
+					array(
+						'success' => false,
+						'message' => __( 'You must specify a user ID.' )
+					)
+				)
+			);
+		}
+				
 		$count_tasks = get_posts( array(
 			'connected_type' => 'nervetask_to_user',
 			'connected_items' => $user,

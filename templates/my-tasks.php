@@ -5,6 +5,8 @@
  * @package control
  */
 
+$user = wp_get_current_user();
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
@@ -24,6 +26,7 @@ get_header(); ?>
 			<?php endwhile; // end of the loop. ?>
 
 			<?php if( is_user_logged_in() ) { ?>
+			<meta id="userid" data-userid="<?php echo $user->ID; ?>">
 			<table class="table table-striped table-bordered table-tasks">
 				<thead>
 					<tr>

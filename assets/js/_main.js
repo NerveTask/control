@@ -34,11 +34,28 @@
 		// My Tasks template
 		page_template_templatesmy_tasks_php: {
 			init: function () {
+				var user = $('#userid').data('userid');
+				
 				// JavaScript to be fired on the home page
 				$('.table-tasks').dataTable({
 					'bProcessing': true,
 					'bServerSide': true,
-					'sAjaxSource': control.ajaxURL + '?action=get_dashboard_tasks',
+					'sAjaxSource': control.ajaxURL + '?action=get_user_tasks&user='+ user,
+					'iColumns': 5,
+					'aaSorting': [[5, "asc"]]
+				});
+			}
+		},
+		// Author template
+		author: {
+			init: function () {
+				var user = $('#userid').data('userid');
+				
+				// JavaScript to be fired on the home page
+				$('.table-tasks').dataTable({
+					'bProcessing': true,
+					'bServerSide': true,
+					'sAjaxSource': control.ajaxURL + '?action=get_user_tasks&user='+ user,
 					'iColumns': 5,
 					'aaSorting': [[5, "asc"]]
 				});
