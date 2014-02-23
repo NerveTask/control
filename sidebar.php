@@ -7,10 +7,6 @@
 ?>
 	<div id="secondary" class="widget-area" role="complementary">
 
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-		</div>
-
 		<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
 
 			<aside id="search" class="widget widget_search">

@@ -43,6 +43,7 @@ function control_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'control' ),
+		'secondary' => __( 'Secondary Menu', 'control' ),
 	) );
 
 	// Enable support for Post Formats.
@@ -80,7 +81,7 @@ add_action( 'widgets_init', 'control_widgets_init' );
  */
 function control_scripts() {
 
-	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '55f0a3798f9d897e05093c26b0df271f');
+	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '1fd9385952e6759e11ccd89970b35cbd');
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -252,6 +253,11 @@ require get_template_directory() . '/inc/extras.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Load WP Bootstrap Nav Walker file.
+ */
+require get_template_directory() . '/inc/bootstrap-nav-walker.php';
 
 /**
  * Load Jetpack compatibility file.
