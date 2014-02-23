@@ -53,8 +53,7 @@
 					'bServerSide': true,
 					'sAjaxSource': control.ajaxURL + '?action=get_tasks',
 					'iColumns': 5,
-					"aaSorting": [[5, "asc"]],
-					"sDom": "<'row'<'col-xs-6'T><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>"
+					"aaSorting": [[5, "asc"]]
 				});
 			}
 		}
