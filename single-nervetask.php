@@ -56,8 +56,12 @@ get_header(); ?>
 					<li>
 						<strong>Created: <?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?></strong><br>
 						by <?php the_author(); ?>
-
 					</li>
+					<?php if( class_exists( 'Email' ) ) { ?>
+					<li>
+						<?php echo do_shortcode( '[email_add_subsciber_form]' ); ?>
+					</li>
+					<?php } ?>
 				</ul>
 
 			</div><!-- .entry-meta -->
