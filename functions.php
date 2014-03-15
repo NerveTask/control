@@ -78,23 +78,22 @@ add_action( 'widgets_init', 'control_widgets_init' );
 function control_scripts() {
 
 	wp_enqueue_style('google_fonts', 'http://fonts.googleapis.com/css?family=Varela+Round' );
-	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '9a54cd961649063232e0e78cbdfe3b03');
+	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '1d578e5a6fd16879c213d9fc1e9f136b');
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	wp_register_script('modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-2.7.0.min.js', array(), null, false);
-	wp_register_script('control_scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', array(), 'e53ccad1c53a0370df6bb3364651fd55', true);
+	wp_register_script('modernizr', get_template_directory_uri() .'/assets/js/vendor/modernizr-2.7.0.min.js', array(), null, false);
+	wp_register_script('datatables',get_template_directory_uri() .'/assets/datatables/js/jquery.dataTables.min.js' );
+	wp_register_script('control_scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', array(), '5fc01fe39ba6b5097121517afddf988d', true);
+
 	wp_enqueue_script('modernizr');
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('control-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true);
-	wp_enqueue_script('control-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true);
+	wp_enqueue_script('datatables');
 	wp_enqueue_script('control_scripts');
-	wp_localize_script('control_scripts', 'ajaxurl', array('ajaxurl' => admin_url('admin-ajax.php')));
 
-	wp_register_script('datatables',		get_template_directory_uri() .'/assets/datatables/js/jquery.dataTables.min.js' );
-	wp_enqueue_script(array('datatables','datatablesreload', 'jquery-ui-dialog'));
+	wp_localize_script('control_scripts', 'ajaxurl', array('ajaxurl' => admin_url('admin-ajax.php')));
 	wp_localize_script( 'control_scripts', 'control', array(
 		'ajaxURL' => admin_url('admin-ajax.php'),
 		'tableNonce' => wp_create_nonce( 'rotary-table-nonce' )

@@ -66,11 +66,13 @@
 			init: function () {
 				// JavaScript to be fired on the 'nervetask' archive
 				$('.table-tasks').dataTable({
+					'iDisplayLength': 25,
+					'aLengthMenu': [[25, 50, 100], [25, 50, 100]],
 					'bProcessing': true,
 					'bServerSide': true,
 					'sAjaxSource': control.ajaxURL + '?action=get_tasks',
 					'iColumns': 5,
-					"aaSorting": [[5, "asc"]]
+					'aaSorting': [[5, "asc"]]
 				});
 			}
 		}
