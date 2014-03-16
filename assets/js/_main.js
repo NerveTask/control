@@ -29,6 +29,9 @@
 				$(document).on('nervetask-update-priority', nervetaskUpdatePriorityHandler);
 				$(document).on('nervetask-update-category', nervetaskUpdateCategoryHandler);
 
+				$('.chosen-select').chosen({
+					width: '95%'
+				});
 			}
 		},
 		// My Tasks template
@@ -127,6 +130,8 @@
 		output = $(e.message.users).map(function () {
 			return '<a href="?author=' + this.data.ID + '">' + this.data.display_name + '</a>';
 		}).get().join(',');
+		
+		$('#task-meta-assignees-options').collapse('hide');
 
 		$('.assigned').html(output);
 
@@ -140,6 +145,8 @@
 		output = $(e.message.terms).map(function () {
 			return '<a href="?nervetask_status=' + this.slug + '">' + this.name + '</a>';
 		}).get().join(',');
+		
+		$('#task-meta-status-options').collapse('hide');
 
 		$('.task-status').html(output);
 
@@ -153,6 +160,8 @@
 		output = $(e.message.terms).map(function () {
 			return '<a href="?nervetask_priority=' + this.slug + '">' + this.name + '</a>';
 		}).get().join(',');
+		
+		$('#task-meta-priority-options').collapse('hide');
 
 		$('.task-priority').html(output);
 
@@ -166,6 +175,8 @@
 		output = $(e.message.terms).map(function () {
 			return '<a href="?nervetask_category=' + this.slug + '">' + this.name + '</a>';
 		}).get().join(',');
+		
+		$('#task-meta-category-options').collapse('hide');
 
 		$('.task-category').html(output);
 
