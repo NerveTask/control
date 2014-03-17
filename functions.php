@@ -78,7 +78,7 @@ add_action( 'widgets_init', 'control_widgets_init' );
 function control_scripts() {
 
 	wp_enqueue_style('google_fonts', 'http://fonts.googleapis.com/css?family=Varela+Round' );
-	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, 'f4443754ccfa0412f4a3614c7f492f26');
+	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '02f706dab7bfa0de3e4d8676db73353e');
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -157,20 +157,20 @@ function control_custom_menus() {
 	// If it doesn't exist, let's create it.
 	if( !$menu_exists){
 		$menu_id = wp_create_nav_menu( 'secondary' );
-		
+
 		$user = wp_get_current_user();
 
 		// Set up default menu items
 		$menu_author_id = wp_update_nav_menu_item($menu_id, 0, array(
 			'menu-item-title' =>  __( $user->display_name ),
-			'menu-item-url' => get_author_posts_url( $user->ID ), 
+			'menu-item-url' => get_author_posts_url( $user->ID ),
 			'menu-item-status' => 'publish'));
-		
+
 		// Set up default menu items
 		$menu_logout_id = wp_update_nav_menu_item($menu_id, 0, array(
 			'menu-item-title' =>  __( 'Logout' ),
 			'menu-item-parent-id' => $menu_author_id,
-			'menu-item-url' => wp_logout_url(), 
+			'menu-item-url' => wp_logout_url(),
 			'menu-item-status' => 'publish'));
 
 	}
@@ -237,6 +237,25 @@ function control_register_required_plugins() {
 
 }
 add_action( 'tgmpa_register', 'control_register_required_plugins' );
+
+function control_get_task_status( $post_id ) {
+	$terms = get_the_terms( $post_id, 'nervetask_status' );
+
+	if ( $terms && ! is_wp_error( $terms ) ) {
+
+		$statuses = array();
+
+		foreach ( $terms as $term ) {
+			$statuses[] = 'nervetask-status nervetask-status-'. $term->slug;
+		}
+
+		$output = join( ' ', $statuses );
+	} else {
+		$output = 'nervetask-status-null';
+	}
+
+	return $output;
+}
 
 /**
  * Require NerveTask.

@@ -12,8 +12,8 @@ get_header(); ?>
 
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class( 'col-sm-8' ); ?>>
-				<header class="entry-header">
+			<article id="post-<?php the_ID(); ?>" <?php post_class( 'col-sm-8 ' ); ?>>
+				<header class="entry-header <?php echo control_get_task_status( get_the_ID() ); ?>">
 					<a href="<?php the_permalink(); ?>" class="post-id">#<?php the_ID(); ?></a>
 					<h1 class="entry-title"><?php the_title(); ?></h1>
 				</header><!-- .entry-header -->
