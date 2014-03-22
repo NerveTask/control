@@ -54,6 +54,9 @@ get_header(); ?>
 						<?php echo do_shortcode( '[nervetask_update_category]' ); ?>
 					</li>
 					<li>
+						<?php echo do_shortcode( '[nervetask_update_tags]' ); ?>
+					</li>
+					<li>
 						<strong>Created: <?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?></strong><br>
 						by <?php the_author(); ?>
 					</li>

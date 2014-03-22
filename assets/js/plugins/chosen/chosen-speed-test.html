@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="chosen.css">
+</head>
+<body>
+  <script type="text/javascript">
+    // console.time implementation for IE
+    if(window.console && typeof(window.console.time) == "undefined") {
+        console.time = function(name, reset){
+            if(!name) { return; }
+            var time = new Date().getTime();
+            if(!console.timeCounters) { console.timeCounters = {}; }
+            var key = "KEY" + name.toString();
+            if(!reset && console.timeCounters[key]) { return; }
+                console.timeCounters[key] = time;
+            };
+
+        console.timeEnd = function(name){
+            var time = new Date().getTime();
+            if(!console.timeCounters) { return; }
+            var key = "KEY" + name.toString();
+            var timeCounter = console.timeCounters[key];
+            var diff;
+            if(timeCounter) {
+                diff = time - timeCounter;
+                var label = name + ": " + diff + "ms";
+                console.info(label);
+                delete console.timeCounters[key];
+            }
+            return diff;
+        };
+    }
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js"></script>
+  <script src="chosen.jquery.js" type="text/javascript"></script>
+  <!--script src="statmachine.js"></script-->
+  <!--script src="underscore-min.js"></script-->
+  <script type="text/javascript">
+
+  var StatMachine = function(){
+    
+  };
+  
+  $.extend(StatMachine.prototype, {
+    stats: {},
+    countStat: function(label, duration){
+      if(this.stats[label]){
+        this.stats[label].push(duration);
+      }else{
+        this.stats[label] = [duration];
+      }
+    },
+    summary: function(){
+      console.log(this.stats);
+    }
+  });
+
+    function applyChosen(group){
+      var time = new Date();
+      $select.chosen({width: '50px'});
+      var diff = new Date() - time;
+      stats.countStat(group+"-Apply", diff);
+    }
+
+    function chosenOpen(chosen, group){
+      var time = new Date();
+      chosen.results_show();
+      var diff = new Date() - time;
+      stats.countStat(group+"-Open", diff);
+    }
+
+    function chosenSearch(chosen, group, terms){
+      var time = new Date();
+      chosen.search_field.val(terms);
+      chosen.results_search();
+      var diff = new Date() - time;
+      stats.countStat(group+"-Search"+terms, diff);
+    }
+
+    function chosenTest(group){
+      applyChosen(group);
+
+      chosen = $select.data('chosen');
+      
+      chosenOpen(chosen, group);
+
+      chosenSearch(chosen, group, "1");
+      chosenSearch(chosen, group, "12");
+      chosenSearch(chosen, group, "123");
+      chosenSearch(chosen, group, "12");
+      chosenSearch(chosen, group, "1");
+      chosenSearch(chosen, group, "");
+
+      $select.removeClass("chzn-done").data("chosen", null).show();
+      $("div").remove();
+
+    }
+
+    $(function(){
+
+      window.stats = new StatMachine();
+      var $body = $("body"), i;
+
+      window.$select = $("<select />");
+      for(i=1; i<=1000; i+=1){
+        $select.append("<option>"+i+"</option>");
+      }
+      $body.append($select);
+
+
+      console.time("Test");
+      for(i=0; i<50; i+=1){
+        console.time("single once");
+        chosenTest("single");
+        console.timeEnd("single once");
+      }
+
+      $select.prop("multiple", true);
+
+      for(i=0; i<50; i+=1){
+        console.time("multi once");
+        chosenTest("multi");
+        console.timeEnd("multi once");
+      }
+      console.timeEnd("Test");
+      stats.summary();
+
+    });
+  </script>
+</body>
+</html>
