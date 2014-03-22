@@ -28,10 +28,19 @@
 				$(document).on('nervetask-update-status', nervetaskUpdateStatusHandler);
 				$(document).on('nervetask-update-priority', nervetaskUpdatePriorityHandler);
 				$(document).on('nervetask-update-category', nervetaskUpdateCategoryHandler);
+				$(document).on('nervetask-update-tags', nervetaskUpdateTagsHandler);
+				
+				$('select.nervetask-update-tags').chosen({
+					create_option: true,
+					persistent_create_option: true,
+					skip_no_results: true,
+					width: '95%'
+				});
 
 				$('.chosen-select').chosen({
 					width: '95%'
 				});
+
 			}
 		},
 		// My Tasks template
@@ -179,6 +188,21 @@
 		$('#task-meta-category-options').collapse('hide');
 
 		$('.task-category').html(output);
+
+	}
+	
+	function nervetaskUpdateTagsHandler(e) {
+
+		var output = '';
+		$('.task-tags').empty();
+
+		output = $(e.message.terms).map(function () {
+			return '<a href="?nervetask_tags=' + this.slug + '">' + this.name + '</a>';
+		}).get().join(',');
+		
+		$('#task-meta-tags-options').collapse('hide');
+
+		$('.task-tags').html(output);
 
 	}
 
