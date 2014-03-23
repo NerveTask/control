@@ -143,6 +143,8 @@
 		$('#task-meta-assignees-options').collapse('hide');
 
 		$('.assigned').html(output);
+		
+		nervetaskComment(e.message.comment);
 
 	}
 
@@ -158,6 +160,8 @@
 		$('#task-meta-status-options').collapse('hide');
 
 		$('.task-status').html(output);
+		
+		nervetaskComment(e.message.comment);
 
 	}
 
@@ -173,6 +177,8 @@
 		$('#task-meta-priority-options').collapse('hide');
 
 		$('.task-priority').html(output);
+		
+		nervetaskComment(e.message.comment);
 
 	}
 
@@ -188,6 +194,8 @@
 		$('#task-meta-category-options').collapse('hide');
 
 		$('.task-category').html(output);
+		
+		nervetaskComment(e.message.comment);
 
 	}
 	
@@ -203,6 +211,24 @@
 		$('#task-meta-tags-options').collapse('hide');
 
 		$('.task-tags').html(output);
+		
+		nervetaskComment(e.message.comment);
+
+	}
+	
+	function nervetaskComment(data) {
+		
+		var output;
+		
+		output = '<li class="status">';
+		output += '<div class="comment-body">';
+		output += '<div class="comment-meta commentmetadata">refresh this page to see more information</div>';
+		output += '<div class="comment-author vcard"><cite class="fn">'+ data[0].comment_author +'</cite></div>';
+		output += '<div class="comment-text"><p>'+ data[0].comment_content +'</p></div>';
+		output += '</div>';
+		output += '</li>';
+
+		$('.comment-list').append(output);
 
 	}
 
