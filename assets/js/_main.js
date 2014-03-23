@@ -222,13 +222,13 @@
 		
 		output = '<li class="status">';
 		output += '<div class="comment-body">';
-		output += '<div class="comment-meta commentmetadata">refresh this page to see more information</div>';
+		output += '<div class="comment-meta commentmetadata">'+ moment(data[0].comment_date).format('MMMM Do YYYY') +' at '+ moment(data[0].comment_date).format('h:mma') +'</div>';
 		output += '<div class="comment-author vcard"><cite class="fn">'+ data[0].comment_author +'</cite></div>';
 		output += '<div class="comment-text"><p>'+ data[0].comment_content +'</p></div>';
 		output += '</div>';
 		output += '</li>';
-
-		$('.comment-list').append(output);
+		
+		$(output).hide().appendTo('.comment-list').show('fast');
 
 	}
 
