@@ -257,6 +257,21 @@ function control_get_task_status( $post_id ) {
 	return $output;
 }
 
+function control_status_colors() {
+	$terms = get_terms( 'nervetask_status', array( 'hide_empty' => false ) );
+
+	echo "<style id='color_nervetask_colors'>\n";
+
+	foreach ( $terms as $term ) {
+		$what = 'background' == get_option( 'nervetask_status_what_color' ) ? 'background-color' : 'color';
+
+		printf( ".comment-list .status.nervetask-status-%s, .comment-list .status.nervetask-status-%s { border-left: 3px solid %s; } \n", $term->term_id, $term->slug, get_option( 'nervetask_status_' . $term->term_id . '_color', '#fff' ) );
+	}
+
+	echo "</style>\n";
+}
+add_action( 'wp_head', 'control_status_colors' );
+
 /**
  * Require NerveTask.
  */
