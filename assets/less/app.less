@@ -449,7 +449,6 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 	border-bottom: 1px dotted #ccc;
 	list-style: none;
 	margin: 0;
-	padding: 10px 10px 0;
 
 	.comment-meta {
 		color: #999;
@@ -473,7 +472,8 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 
 .comment {
 	background: #fff;
-
+	padding: 10px 10px 0;
+	
 	.comment-content {
 		overflow: hidden;
 	}
@@ -502,18 +502,29 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 }
 
 .status {
-	background: aliceblue;
 	color: #999;
 	overflow: hidden;
+	padding: 5px 10px;
 
 	.comment-body {
 		color: #999;
 		display: inline;
 		font-size: 11px;
+		
+		.comment-author,
+		.comment-text {
+			display: inline;
+			
+			p {
+				display: inline;
+			}
+		}
 	}
 
 	a {
-		color: #666;
+		border-bottom: 1px dotted #999;
+		color: #999;
+		text-decoration: none;
 	}
 }
 
