@@ -265,7 +265,7 @@ function control_status_colors() {
 	foreach ( $terms as $term ) {
 		$what = 'background' == get_option( 'nervetask_status_what_color' ) ? 'background-color' : 'color';
 
-		printf( ".comment-list .status.nervetask-status-%s, .comment-list .status.nervetask-status-%s { border-left: 3px solid %s; } \n", $term->term_id, $term->slug, get_option( 'nervetask_status_' . $term->term_id . '_color', '#fff' ) );
+		printf( ".comment-list .nervetask-status-%s, .comment-list .nervetask-status-%s { border-left: 3px solid %s; } \n", $term->term_id, $term->slug, get_option( 'nervetask_status_' . $term->term_id . '_color', '#fff' ) );
 	}
 
 	echo "</style>\n";
