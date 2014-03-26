@@ -124,8 +124,14 @@
 
 	function nervetaskNewTaskHandler(e) {
 
-		$('.new-task-list').append(function () {
-			var output = '<li><a href="' + e.message.post.guid + '">' + e.message.post.post_title + '</a></li>';
+		$('#new-task-user-feedback').append(function () {
+			console.log(e);
+			var output;
+			if( e.message.status === 'success' ) {
+				output = '<div class="alert alert-success"><strong><a href="' + e.message.post.guid + '">' + e.message.post.post_title + '</a></strong> created successfully</div>';
+			} else {
+				output = '<div class="alert alert-warning">'+ e.message +'</div>';
+			}
 			return output;
 		});
 

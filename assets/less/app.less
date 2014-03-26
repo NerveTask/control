@@ -22,7 +22,7 @@
 
 // Navbar links
 @navbar-default-link-color:                #fff;
-@navbar-default-link-hover-color:          #333;
+@navbar-default-link-hover-color:          #eee;
 @navbar-default-link-hover-bg:             transparent;
 @navbar-default-link-active-color:         #eee;
 @navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%);
@@ -51,6 +51,9 @@ table.dataTable tr.even td.sorting_1 { background-color: #EAEBFF; }
 table.dataTable tr.even td.sorting_2 { background-color: #F2F3FF; }
 table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 
+.fade {
+  .transition(opacity .05s linear);
+}
 
 /* ==========================================================================
    Base
@@ -83,9 +86,20 @@ a {
 	color: darken(#8091A5,10%);
 }
 
-input[type="submit"] {
+input[type="submit"],
+button[type="submit"] {
 	.btn();
 	.btn-default();
+}
+
+.btn {
+
+	// Slight fade when user hovers over buttons
+	-webkit-transition: background-color 0.5s ease-out;
+	   -moz-transition: background-color 0.5s ease-out;
+	     -o-transition: background-color 0.5s ease-out;
+	        transition: background-color 0.5s ease-out;
+
 }
 
 
@@ -99,6 +113,21 @@ input[type="submit"] {
 	font-family: "Roboto";
 	font-size: 14px;
 	margin: 0 0 8px;
+}
+
+.navbar {
+	
+	.btn {
+		border-radius: 0;
+		
+		&.btn-primary {
+			
+			&:hover {
+				background: darken(@brand-primary,20%);
+				color: #fff;
+			}
+		}
+	}
 }
 
 
