@@ -78,7 +78,7 @@ add_action( 'widgets_init', 'control_widgets_init' );
 function control_scripts() {
 
 	wp_enqueue_style('google_fonts', 'http://fonts.googleapis.com/css?family=Roboto:400,300,700,500' );
-	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '847115b4b2d06e9569110447b542c9a0');
+	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '210dcd407cfa2c20f10b448fb27c3f15');
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -256,21 +256,6 @@ function control_get_task_status( $post_id ) {
 
 	return $output;
 }
-
-function control_status_colors() {
-	$terms = get_terms( 'nervetask_status', array( 'hide_empty' => false ) );
-
-	echo "<style id='color_nervetask_colors'>\n";
-
-	foreach ( $terms as $term ) {
-		$what = 'background' == get_option( 'nervetask_status_what_color' ) ? 'background-color' : 'color';
-
-		printf( ".comment-list .nervetask-status-%s, .comment-list .nervetask-status-%s { border-left: 3px solid %s; } \n", $term->term_id, $term->slug, get_option( 'nervetask_status_' . $term->term_id . '_color', '#fff' ) );
-	}
-
-	echo "</style>\n";
-}
-add_action( 'wp_head', 'control_status_colors' );
 
 /**
  * Require NerveTask.

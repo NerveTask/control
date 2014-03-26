@@ -13,7 +13,7 @@ get_header(); ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'col-sm-8 ' ); ?>>
-				<header class="entry-header <?php echo control_get_task_status( get_the_ID() ); ?>">
+				<header class="entry-header">
 					<a href="<?php the_permalink(); ?>" class="post-id">#<?php the_ID(); ?></a>
 					<h1 class="entry-title"><?php the_title(); ?></h1>
 				</header><!-- .entry-header -->
@@ -40,12 +40,12 @@ get_header(); ?>
 			<div class="entry-meta col-sm-4">
 
 				<ul class="task-meta list-unstyled unstyled">
-
-					<li>
-						<?php echo do_shortcode( '[nervetask_update_assignees]' ); ?>
+					
+					<li class="task-sidebar-status <?php echo control_get_task_status( get_the_ID() ); ?>">
+						<?php echo do_shortcode( '[nervetask_update_status]' ); ?>
 					</li>
 					<li>
-						<?php echo do_shortcode( '[nervetask_update_status]' ); ?>
+						<?php echo do_shortcode( '[nervetask_update_assignees]' ); ?>
 					</li>
 					<li>
 						<?php echo do_shortcode( '[nervetask_update_priority]' ); ?>

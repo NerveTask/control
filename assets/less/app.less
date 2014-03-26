@@ -371,8 +371,6 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 
 .single-nervetask {
 
-    .entry-header { background-color: #ccc; }
-
 	.site-main {
 		overflow: hidden;
 		padding: 0;
@@ -383,8 +381,8 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 			overflow: hidden;
 
 			header {
-				border-bottom: 1px solid #ccc;
-				padding: 20px;
+				border-bottom: 1px solid rgba(69,78,88,0.1);
+				padding: 12px 20px 11px;
 
 				.post-id {
 					background: black;
@@ -402,7 +400,6 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 				}
 
 				h1 {
-					color: white;
 					font-size: 26px;
 					line-height: 42px;
 					margin: 0;
@@ -445,6 +442,19 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 					strong {
 						font-size: 18px;
 						font-weight: 700;
+					}
+				}
+				
+				.nervetask-status {
+					color: rgba(255,255,255,.75);
+					
+					a {
+						color: rgba(255,255,255,1);
+					}
+					
+					select,
+					.chosen-container-single .chosen-single {
+						color: #444;
 					}
 				}
 				.control-input {
