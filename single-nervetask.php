@@ -14,7 +14,7 @@ get_header(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'col-sm-8 ' ); ?>>
 				<header class="entry-header">
-					<a href="<?php the_permalink(); ?>" class="post-id">#<?php the_ID(); ?></a>
+					<span class="post-id">#<?php the_ID(); ?></span>
 					<h1 class="entry-title"><?php the_title(); ?></h1>
 				</header><!-- .entry-header -->
 
