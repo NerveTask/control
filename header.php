@@ -71,14 +71,7 @@
 			<div class="navbar-right">
 				<ul id="menu-secondary" class="nav navbar-nav">
 					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown">
-						<a title="Patrick Daly" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Patrick Daly
-							<span class="caret"></span>
-						</a>
-						<ul role="menu" class=" dropdown-menu">
-							<li id="menu-item-168" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-168">
-								<a title="Logout" href="http://local.nervetask.com/wp-login.php?action=logout&amp;_wpnonce=06cf89f330">Logout</a>
-							</li>
-						</ul>
+						<?php wp_loginout(); ?>
 					</li>
 				</ul>
 			</div>
