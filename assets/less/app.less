@@ -6,12 +6,12 @@
 @color1: #d8225e; // links / primary
 @color2: #339ce1;
 @color3: #fff;
-@color4: rgba(31,31,31,0.95);
+@color4: rgba(31,31,31,0.10);
 @color5: #365172; // sidebar
 
 @navbar-height:                    32px;
 @navbar-default-color:             #fff;
-@navbar-default-bg:                @color2;
+@navbar-default-bg:                #454e58;
 @navbar-default-border:            darken(@navbar-default-bg, 6.5%);
 
 // Navbar links
@@ -28,6 +28,22 @@
 @navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
 @navbar-default-brand-hover-bg:            transparent;
 
+// Tables
+@table-bg-accent:                    #f5f5f6; // for striping
+@table-bg-hover:                     rgba(69,78,88,0.02);
+@table-bg-active:                    @table-bg-hover;
+
+@table-border-color:                 #ddd; // table and cell border
+
+table.dataTable tr.odd { background-color: #f5f5f6); }
+table.dataTable tr.even { background-color: white; }
+
+table.dataTable tr.odd td.sorting_1 { background-color: #D3D6FF; }
+table.dataTable tr.odd td.sorting_2 { background-color: #DADCFF; }
+table.dataTable tr.odd td.sorting_3 { background-color: #E0E2FF; }
+table.dataTable tr.even td.sorting_1 { background-color: #EAEBFF; }
+table.dataTable tr.even td.sorting_2 { background-color: #F2F3FF; }
+table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 
 
 /* ==========================================================================
@@ -39,7 +55,7 @@ html {
 }
 body {
 	background: @color3;
-	color: #222;
+	color: #8091A5;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: 300;
 	font-size: 12px;
@@ -50,7 +66,7 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6 {
-	font-family: "Varela Round";
+	font-family: "Roboto";
 }
 
 h1, .h1 {
@@ -58,7 +74,11 @@ h1, .h1 {
 }
 
 a {
-	color: @color1;
+	color: darken(#8091A5,10%);
+}
+
+input[type="submit"] {
+	.btn();
 }
 
 
@@ -69,19 +89,19 @@ a {
 .banner { }
 
 .site-title {
+	font-family: "Roboto";
 	font-size: 14px;
 	margin: 0 0 8px;
 }
-
-.navbar {
-	font-family: "Varela Round";
-}
-
 
 
 /* ==========================================================================
    Content
    ========================================================================== */
+
+.site-main {
+	padding: 15px;
+}
 
 .site-content {
 	position: absolute;
@@ -111,10 +131,6 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 /* ==========================================================================
    Primary Content
    ========================================================================== */
-
-.site-main {
-	padding: 20px;
-}
 
 .main {
 	height: 100%;
@@ -146,8 +162,8 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 	top: 32px;
 	left: 0;
 	font-weight: 300;
-	background: @color4;
-	color: #8091A5;
+	background: rgba(69, 78, 88,0.05);
+	border-right: 1px solid rgba(69, 78, 88,0.1);
 	bottom: 0;
 	padding: 20px 0;
 	position: fixed;
@@ -155,16 +171,15 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 	z-index: 99;
 
 	a {
-		color: #BCD4F2;
-		display: block;
-		padding: 4px 10px;
-		text-decoration: none;
+		text-decoration: underline;
+		
 
 		&:active {
 			opacity: 0.5;
 		}
 		&:hover {
-			background: darken( #4F76A5, 5% );;
+			color: #d8225e;
+			text-decoration: none;
 		}
 	}
 
@@ -197,19 +212,58 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 	}
 
 	.widget {
-
+		margin: 0 0 20px;
+		
 		.widget-title {
-			color: white;
 			font-size: 14px;
 			font-weight: 400;
-			margin: 0;
-			padding: 0 10px;
+			margin: 0 0 5px;
+			padding: 0 15px;
 		}
 
 		> ul {
 			list-style: none;
 			margin: 0;
 			padding: 0;
+			
+			> li {
+				
+				> a {
+					display: block;
+					padding: 4px 15px;
+				}
+			}
+		}
+		
+		&.widget_search {
+			padding: 0 15px;
+			
+			.search-submit {
+				.btn-xs();
+			}
+		}
+		
+		&.widget_calendar {
+			padding: 0 15px;
+			
+			.widget_calendar {float: left;}
+			#wp-calendar {width: 100%; }
+			#wp-calendar caption { text-align: right; color: #333; font-size: 12px; margin-top: 10px; margin-bottom: 15px; }
+			#wp-calendar thead { font-size: 10px; }
+			#wp-calendar thead th { padding-bottom: 10px; }
+			#wp-calendar tbody { color: #aaa; }
+			#wp-calendar tbody td { background: #f5f5f5; border: 1px solid #fff; text-align: center; padding:8px;}
+			#wp-calendar tbody td:hover { background: #fff; }
+			#wp-calendar tbody .pad { background: none; }
+			#wp-calendar tfoot #next { font-size: 10px; text-transform: uppercase; text-align: right; }
+			#wp-calendar tfoot #prev { font-size: 10px; text-transform: uppercase; padding-top: 10px; }
+		}
+		
+		&.widget_recent_comments {
+			
+			li {
+				padding: 0 15px;
+			}
 		}
 	}
 
@@ -320,11 +374,11 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
     .entry-header { background-color: #ccc; }
 
 	.site-main {
-		background: #454E59;
 		overflow: hidden;
+		padding: 0;
 
 		.nervetask {
-			background: #fff;
+			border-right: 1px solid rgba(69, 78, 88,0.1);
 			padding: 0;
 			overflow: hidden;
 
@@ -375,25 +429,20 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 
 		}
 		.entry-meta {
-			color: #8091A5;
 			padding: 0;
-
-			a {
-				color: #BCD4F2;
-			}
 
 			.task-meta {
 				margin: 0;
 				padding: 0;
 
 				> li {
-					border-bottom: 1px dotted #8091A5;
+					border-bottom: 1px dotted rgba(69, 78, 88,0.1);
+					//border-bottom: 1px dotted #8091A5;
 					padding: 20px;
 				}
 
 				li {
 					strong {
-						color: #fff;
 						font-size: 18px;
 						font-weight: 700;
 					}
@@ -409,7 +458,6 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 				.email-subscribe {
 
 					.email-add-subscriber-title {
-						color: #fff;
 						font-size: 18px;
 						font-weight: 700;
 					}
@@ -562,6 +610,61 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 
 
 /* ==========================================================================
+   Accessibility
+   ========================================================================== */
+/* Text meant only for screen readers */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+}
+
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar */
+}
+
+
+/* ==========================================================================
+   Alignments
+   ========================================================================== */
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.5em;
+}
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.5em;
+}
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+}
+figure.alignnone {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 
@@ -584,18 +687,6 @@ table.dataTable tr.even td.sorting_3 { background-color: darken( @color3, 1% )F;
 		color: #8091A5;
 	}
 }
-
-
-/* ==========================================================================
-   WordPress Generated Classes
-   See: http://codex.wordpress.org/CSS#WordPress_Generated_Classes
-   ========================================================================== */
-
-.aligncenter { display: block; margin: 0 auto; }
-.alignleft { float: left; }
-.alignright { float: right; }
-figure.alignnone { margin-left: 0; margin-right: 0; }
-
 
 
 /* ==========================================================================
