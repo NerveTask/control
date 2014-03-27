@@ -32,6 +32,7 @@ function control_get_tasks() {
 			'order'				=> $order,
 			'orderby'			=> $orderby,
 			'post_type'			=> 'nervetask',
+			'post_status'		=> 'publish',
 			'posts_per_page'	=> $_GET['iDisplayLength'],
 			's'					=> $_GET['sSearch']
 		);
@@ -142,6 +143,7 @@ function control_get_user_tasks() {
 			'orderby'			=> $orderby,
 			'post_type'			=> 'nervetask',
 			'posts_per_page'	=> $_GET['iDisplayLength'],
+			'post_status'		=> 'publish',
 			's'					=> $_GET['sSearch'],
 			'connected_type'	=> 'nervetask_to_user',
 			'connected_items'	=> $user,
