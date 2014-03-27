@@ -74,6 +74,15 @@ body {
 	position: inherit;
 }
 
+::selection {
+	color: darken(@color3,30%);
+	background: lighten(@color3,30%);
+}
+::-moz-selection {
+	color: darken(@color3,30%);
+	background: lighten(@color3,30%);
+}
+
 h1,h2,h3,h4,h5,h6 {
 	font-family: "Roboto";
 }
