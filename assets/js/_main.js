@@ -54,7 +54,7 @@
 					'bServerSide': true,
 					'sAjaxSource': control.ajaxURL + '?action=get_user_tasks&user='+ user,
 					'iColumns': 5,
-					'aaSorting': [[5, "asc"]]
+					'aaSorting': [[5, "desc"]]
 				});
 			}
 		},
@@ -69,7 +69,7 @@
 					'bServerSide': true,
 					'sAjaxSource': control.ajaxURL + '?action=get_user_tasks&user='+ user,
 					'iColumns': 5,
-					'aaSorting': [[5, "asc"]]
+					'aaSorting': [[5, "desc"]]
 				});
 			}
 		},
@@ -84,7 +84,7 @@
 					'bServerSide': true,
 					'sAjaxSource': control.ajaxURL + '?action=get_tasks',
 					'iColumns': 5,
-					'aaSorting': [[5, "asc"]]
+					'aaSorting': [[5, "desc"]]
 				});
 			}
 		},
