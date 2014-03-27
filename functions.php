@@ -78,7 +78,7 @@ add_action( 'widgets_init', 'control_widgets_init' );
 function control_scripts() {
 
 	wp_enqueue_style('google_fonts', 'http://fonts.googleapis.com/css?family=Roboto:400,300,700,500' );
-	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, 'db7ae0939d9178fe61743ec7c319b259');
+	wp_enqueue_style('control_main', get_template_directory_uri() . '/assets/css/main.min.css', false, '583688a5903d0a2fc2c7fa0c62893754');
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -266,6 +266,7 @@ function control_status_colors() {
 		$what = 'background' == get_option( 'nervetask_status_what_color' ) ? 'background-color' : 'color';
 
 		printf( ".comment-list .nervetask-status-%s, .comment-list .nervetask-status-%s { border-left: 3px solid %s; } \n", $term->term_id, $term->slug, get_option( 'nervetask_status_' . $term->term_id . '_color', '#fff' ) );
+		//printf( ".table tr td .nervetask-status-%s a, .table tr td .nervetask-status-%s a { background: none; color: %s; } \n", $term->term_id, $term->slug, get_option( 'nervetask_status_' . $term->term_id . '_color', '#fff' ) );
 	}
 
 	echo "</style>\n";

@@ -57,7 +57,7 @@ function control_get_tasks() {
 
 				$rows[] = array(
 					'<a href="'. get_permalink() .'">'. get_the_title() .'</a>',
-					get_the_term_list( $post_id, 'nervetask_status', '<span class="task-status">', ', ', '</span>' ),
+					get_the_term_list( $post_id, 'nervetask_status', '<span class="task-status '. control_get_task_status( $post_id ) .'">', ', ', '</span>' ),
 					get_the_term_list( $post_id, 'nervetask_priority', '<span class="task-priority">', ', ', '</span>' ),
 					$assigned,
 					get_post_meta( $post_id, 'nervetask_due_date', true),
