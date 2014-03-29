@@ -155,19 +155,26 @@
 	}
 
 	function nervetaskUpdateStatusHandler(e) {
+		console.log(e);
 
-		var output = '';
+		var output, status = '';
 		$('.task-status').empty();
 
 		output = $(e.message.terms).map(function () {
+			// TODO: this could be a lot more efficient and failproof
+			$('.task-sidebar-status.nervetask-status').attr('class', '').addClass('task-sidebar-status nervetask-status nervetask-status-' + this.slug );
 			return '<a href="?nervetask_status=' + this.slug + '">' + this.name + '</a>';
 		}).get().join(',');
+
+		status = $(e.message.terms).map(function () {
+			return 'nervetask-status-' + this.slug;
+		}).get().join(' ');
 		
 		$('#task-meta-status-options').collapse('hide');
 
 		$('.task-status').html(output);
-		
-		nervetaskComment(e.message.comment);
+
+		nervetaskComment(e.message.comment, status);
 
 	}
 
@@ -222,11 +229,11 @@
 
 	}
 	
-	function nervetaskComment(data) {
-		
+	function nervetaskComment(data, status) {
+		console.log(data);
 		var output;
 		
-		output = '<li class="status">';
+		output = '<li class="status '+ status + '">';
 		output += '<div class="comment-body">';
 		output += '<div class="comment-meta commentmetadata">'+ moment(data[0].comment_date).format('MMMM Do YYYY') +' at '+ moment(data[0].comment_date).format('h:mma') +'</div>';
 		output += '<div class="comment-author vcard"><cite class="fn">'+ data[0].comment_author +'</cite></div>';
