@@ -29,7 +29,8 @@
 				$(document).on('nervetask-update-priority', nervetaskUpdatePriorityHandler);
 				$(document).on('nervetask-update-category', nervetaskUpdateCategoryHandler);
 				$(document).on('nervetask-update-tags', nervetaskUpdateTagsHandler);
-				
+				$(document).on('nervetask-update-due-date', nervetaskUpdateDueDateHandler);
+
 				$('select.nervetask-update-tags').chosen({
 					create_option: true,
 					persistent_create_option: true,
@@ -228,9 +229,26 @@
 		nervetaskComment(e.message.comment);
 
 	}
+
+	function nervetaskUpdateDueDateHandler(e) {
+
+		var output = '';
+		$('.task-due-date').empty();
+
+		output = $(e.message.due_date).map(function () {
+			return moment(this.date).format('MMMM Do YYYY') +' at '+ moment(this.date).format('h:mma');
+		}).get().join(',');
+		
+		$('#task-meta-due-date-options').collapse('hide');
+
+		$('.task-due-date').html(output);
+		
+		nervetaskComment(e.message.comment);
+
+	}
 	
 	function nervetaskComment(data, status) {
-		console.log(data);
+
 		var output;
 		
 		output = '<li class="status '+ status + '">';
