@@ -71,7 +71,7 @@ function control_get_tasks() {
 					get_the_term_list( $post_id, 'nervetask_priority', '<span class="task-priority">', ', ', '</span>' ),
 					$assigned,
 					$due_date,
-					'<time datetime="'. get_the_time('c') .'">'. get_the_time('n/j/y') .' @ '. get_the_time('g:ia') .'</time>'
+					'<time datetime="'. get_the_time('c') .'">'. get_the_time(get_option('date_format')) .' '. get_the_time(get_option('time_format')) .'</time>'
 				);
 
 			}
