@@ -57,6 +57,5 @@
 			);
 		?>
 
-		<?php edit_post_link( __( 'Edit', 'control' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-meta -->
 </article><!-- #post-## -->
