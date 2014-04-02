@@ -179,13 +179,23 @@ function control_get_user_tasks() {
 					$assigned .= '<a href="'. get_author_posts_url( $user->data->ID ) .'">'. $user->data->display_name .'</a>';
 				}
 
+				$due_date_object = get_post_meta( $post_id, 'nervetask_due_date', true );
+				$due_date_object_decoded = json_decode( $due_date_object );
+				
+				if( $due_date_object_decoded ) {
+					$due_date = new DateTime($due_date_object_decoded->due_date);
+					$due_date = $due_date->format(get_option('date_format')) .' '. $due_date->format(get_option('time_format'));
+				} else {
+					$due_date = '';
+				}
+				
 				$rows[] = array(
 					'<a href="'. get_permalink() .'">'. get_the_title() .'</a>',
 					get_the_term_list( $post_id, 'nervetask_status', '<span class="task-status '. control_get_task_status( $post_id ) .'">', ', ', '</span>' ),
 					get_the_term_list( $post_id, 'nervetask_priority', '<span class="task-priority">', ', ', '</span>' ),
 					$assigned,
-					get_post_meta( $post_id, 'nervetask_due_date', true),
-					'<time datetime="'. get_the_time('c') .'">'. get_the_time('n/j/y') .' @ '. get_the_time('g:ia') .'</time>'
+					$due_date,
+					'<time datetime="'. get_the_time('c') .'">'. get_the_time(get_option('date_format')) .' '. get_the_time(get_option('time_format')) .'</time>'
 				);
 
 			}

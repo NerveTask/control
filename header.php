@@ -54,7 +54,7 @@
 						<a title="<?php echo esc_attr( $current_user->display_name ); ?>" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><?php echo esc_attr( $current_user->display_name ); ?>
 							<span class="caret"></span>
 						</a>
-						<ul role="menu" class=" dropdown-menu">
+						<ul role="menu" class="dropdown-menu">
 							<li id="menu-item-168" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-168">
 								<a title="Logout" href="http://local.nervetask.com/wp-login.php?action=logout&amp;_wpnonce=06cf89f330">Logout</a>
 							</li>
