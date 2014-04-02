@@ -48,6 +48,9 @@ get_header(); ?>
 						<?php echo do_shortcode( '[nervetask_update_assignees]' ); ?>
 					</li>
 					<li>
+						<?php echo do_shortcode( '[nervetask_update_due_date]' ); ?>
+					</li>
+					<li>
 						<?php echo do_shortcode( '[nervetask_update_priority]' ); ?>
 					</li>
 					<li>

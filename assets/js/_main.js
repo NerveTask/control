@@ -29,7 +29,8 @@
 				$(document).on('nervetask-update-priority', nervetaskUpdatePriorityHandler);
 				$(document).on('nervetask-update-category', nervetaskUpdateCategoryHandler);
 				$(document).on('nervetask-update-tags', nervetaskUpdateTagsHandler);
-				
+				$(document).on('nervetask-update-due-date', nervetaskUpdateDueDateHandler);
+
 				$('select.nervetask-update-tags').chosen({
 					create_option: true,
 					persistent_create_option: true,
@@ -155,19 +156,26 @@
 	}
 
 	function nervetaskUpdateStatusHandler(e) {
+		console.log(e);
 
-		var output = '';
+		var output, status = '';
 		$('.task-status').empty();
 
 		output = $(e.message.terms).map(function () {
+			// TODO: this could be a lot more efficient and failproof
+			$('.task-sidebar-status.nervetask-status').attr('class', '').addClass('task-sidebar-status nervetask-status nervetask-status-' + this.slug );
 			return '<a href="?nervetask_status=' + this.slug + '">' + this.name + '</a>';
 		}).get().join(',');
+
+		status = $(e.message.terms).map(function () {
+			return 'nervetask-status-' + this.slug;
+		}).get().join(' ');
 		
 		$('#task-meta-status-options').collapse('hide');
 
 		$('.task-status').html(output);
-		
-		nervetaskComment(e.message.comment);
+
+		nervetaskComment(e.message.comment, status);
 
 	}
 
@@ -221,12 +229,29 @@
 		nervetaskComment(e.message.comment);
 
 	}
-	
-	function nervetaskComment(data) {
+
+	function nervetaskUpdateDueDateHandler(e) {
+
+		var output = '';
+		$('.task-due-date').empty();
+
+		output = $(e.message.due_date).map(function () {
+			return moment(this.date).format('MMMM Do YYYY') +' at '+ moment(this.date).format('h:mma');
+		}).get().join(',');
 		
+		$('#task-meta-due-date-options').collapse('hide');
+
+		$('.task-due-date').html(output);
+		
+		nervetaskComment(e.message.comment);
+
+	}
+	
+	function nervetaskComment(data, status) {
+
 		var output;
 		
-		output = '<li class="status">';
+		output = '<li class="status '+ status + '">';
 		output += '<div class="comment-body">';
 		output += '<div class="comment-meta commentmetadata">'+ moment(data[0].comment_date).format('MMMM Do YYYY') +' at '+ moment(data[0].comment_date).format('h:mma') +'</div>';
 		output += '<div class="comment-author vcard"><cite class="fn">'+ data[0].comment_author +'</cite></div>';
