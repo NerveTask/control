@@ -26,6 +26,18 @@ get_header(); ?>
 							'after'  => '</div>',
 						) );
 					?>
+					
+					<?php if( class_exists( 'NerveTask_Subtasks' ) ) { ?>
+					
+					<div class="subtask-container">
+					
+						<?php echo do_shortcode( '[nervetask_subtasks]' ); ?>
+						<?php echo do_shortcode( '[nervetask_new_subtask]' ); ?>
+						
+					</div>
+					
+					<?php } ?>
+
 				</div><!-- .entry-content -->
 
 				<?php

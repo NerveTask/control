@@ -99,6 +99,60 @@
 					$('.nervetask-update-content .static-content').hide();
 				});
 			}
+		},
+		// Status taxonomy
+		tax_nervetask_status:  {
+			init: function () {
+				var taxonomy_slug = $('#taxonomy').data('taxonomy-slug');
+				var term_id = $('#taxonomy').data('term-id');
+				console.log(term_id);
+				// JavaScript to be fired on the 'nervetask' archive
+				$('.table-tasks').dataTable({
+					'iDisplayLength': 25,
+					'aLengthMenu': [[25, 50, 100], [25, 50, 100]],
+					'bProcessing': true,
+					'bServerSide': true,
+					'sAjaxSource': control.ajaxURL + '?action=get_tax_tasks&tax='+ taxonomy_slug +'&term='+ term_id,
+					'iColumns': 5,
+					'aaSorting': [[5, "desc"]]
+				});
+			}
+		},
+		// Priority taxonomy
+		tax_nervetask_priority:  {
+			init: function () {
+				var taxonomy_slug = $('#taxonomy').data('taxonomy-slug');
+				var term_id = $('#taxonomy').data('term-id');
+				console.log(term_id);
+				// JavaScript to be fired on the 'nervetask' archive
+				$('.table-tasks').dataTable({
+					'iDisplayLength': 25,
+					'aLengthMenu': [[25, 50, 100], [25, 50, 100]],
+					'bProcessing': true,
+					'bServerSide': true,
+					'sAjaxSource': control.ajaxURL + '?action=get_tax_tasks&tax='+ taxonomy_slug +'&term='+ term_id,
+					'iColumns': 5,
+					'aaSorting': [[5, "desc"]]
+				});
+			}
+		},
+		// Category taxonomy
+		tax_nervetask_category:  {
+			init: function () {
+				var taxonomy_slug = $('#taxonomy').data('taxonomy-slug');
+				var term_id = $('#taxonomy').data('term-id');
+				console.log(term_id);
+				// JavaScript to be fired on the 'nervetask' archive
+				$('.table-tasks').dataTable({
+					'iDisplayLength': 25,
+					'aLengthMenu': [[25, 50, 100], [25, 50, 100]],
+					'bProcessing': true,
+					'bServerSide': true,
+					'sAjaxSource': control.ajaxURL + '?action=get_tax_tasks&tax='+ taxonomy_slug +'&term='+ term_id,
+					'iColumns': 5,
+					'aaSorting': [[5, "desc"]]
+				});
+			}
 		}
 	};
 
@@ -131,7 +185,7 @@
 			if( e.message.status === 'success' ) {
 				output = '<div class="alert alert-success"><strong><a href="' + e.message.post.guid + '">' + e.message.post.post_title + '</a></strong> created successfully</div>';
 			} else {
-				output = '<div class="alert alert-warning">'+ e.message +'</div>';
+				output = '<div class="alert alert-warning">'+ e.message.message +'</div>';
 			}
 			return output;
 		});
