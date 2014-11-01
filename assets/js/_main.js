@@ -16,7 +16,7 @@
 
 (function ($) {
 
-	// Use this variable to set up the common and page specific functions. If you 
+	// Use this variable to set up the common and page specific functions. If you
 	// rename this variable, you will also need to rename the namespace below.
 	var Control = {
 		// All pages
@@ -48,7 +48,7 @@
 		page_template_templatesmy_tasks_php: {
 			init: function () {
 				var user = $('#userid').data('userid');
-				
+
 				// JavaScript to be fired on the home page
 				$('.table-tasks').dataTable({
 					'bProcessing': true,
@@ -63,7 +63,7 @@
 		author: {
 			init: function () {
 				var user = $('#userid').data('userid');
-				
+
 				// JavaScript to be fired on the home page
 				$('.table-tasks').dataTable({
 					'bProcessing': true,
@@ -200,11 +200,11 @@
 		output = $(e.message.users).map(function () {
 			return '<a type="button" data-toggle="collapse" data-target="#task-meta-assignees-options" href="#">' + this.data.display_name + '</a>';
 		}).get().join(',');
-		
+
 		$('#task-meta-assignees-options').collapse('hide');
 
 		$('.task-assigned').html(output);
-		
+
 		nervetaskComment(e.message.comment);
 
 	}
@@ -224,7 +224,7 @@
 		status = $(e.message.terms).map(function () {
 			return 'nervetask-status-' + this.slug;
 		}).get().join(' ');
-		
+
 		$('#task-meta-status-options').collapse('hide');
 
 		$('.task-status').html(output);
@@ -241,11 +241,11 @@
 		output = $(e.message.terms).map(function () {
 			return '<a type="button" data-toggle="collapse" data-target="#task-meta-priority-options" href="#">' + this.name + '</a>';
 		}).get().join(', ');
-		
+
 		$('#task-meta-priority-options').collapse('hide');
 
 		$('.task-priority').html(output);
-		
+
 		nervetaskComment(e.message.comment);
 
 	}
@@ -258,15 +258,15 @@
 		output = $(e.message.terms).map(function () {
 			return '<a type="button" data-toggle="collapse" data-target="#task-meta-category-options" href="#">' + this.name + '</a>';
 		}).get().join(', ');
-		
+
 		$('#task-meta-category-options').collapse('hide');
 
 		$('.task-category').html(output);
-		
+
 		nervetaskComment(e.message.comment);
 
 	}
-	
+
 	function nervetaskUpdateTagsHandler(e) {
 
 		var output = '';
@@ -275,11 +275,11 @@
 		output = $(e.message.terms).map(function () {
 			return '<a type="button" data-toggle="collapse" data-target="#task-meta-tag-options" href="#">' + this.name + '</a>';
 		}).get().join(', ');
-		
+
 		$('#task-meta-tag-options').collapse('hide');
 
 		$('.task-tags').html(output);
-		
+
 		nervetaskComment(e.message.comment);
 
 	}
@@ -290,21 +290,21 @@
 		$('.task-due-date').empty();
 
 		output = $(e.message.due_date).map(function () {
-			return '<a type="button" data-toggle="collapse" data-target="#task-meta-due-date-options" href="#">' + moment(this.date).format('MMMM Do YYYY') +' at '+ moment(this.date).format('h:mma') + '</a>';
+			return '<a type="button" data-toggle="collapse" data-target="#task-meta-due-date-options" href="#">' + moment(this.date).format('MMMM Do YYYY') + '</a>';
 		}).get().join(', ');
-		
+
 		$('#task-meta-due-date-options').collapse('hide');
 
 		$('.task-due-date').html(output);
-		
+
 		nervetaskComment(e.message.comment);
 
 	}
-	
+
 	function nervetaskComment(data, status) {
 
 		var output;
-		
+
 		output = '<li class="status '+ status + '">';
 		output += '<div class="comment-body">';
 		output += '<div class="comment-meta commentmetadata">'+ moment(data[0].comment_date).format('MMMM Do YYYY') +' at '+ moment(data[0].comment_date).format('h:mma') +'</div>';
@@ -312,7 +312,7 @@
 		output += '<div class="comment-text"><p>'+ data[0].comment_content +'</p></div>';
 		output += '</div>';
 		output += '</li>';
-		
+
 		$(output).hide().appendTo('.comment-list').show('fast');
 
 	}
